@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Category Pie</title>
+<style>
+html, body { margin:0; padding:0; background:transparent; }
+.wrap { width:100vw; height:100vh; display:flex; align-items:center; justify-content:center; }
+canvas { width:min(360px, 90vw); height:min(360px, 90vw); }
+.legend { position:absolute; bottom:8px; left:50%; transform:translateX(-50%);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; color:#fff; font-size:14px; opacity:0.9; text-align:center;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <canvas id="pie" width="600" height="600"></canvas>
+</div>
+<div class="legend" id="legend"></div>
+<script>
+const params = new URLSearchParams(location.search);
+const src = params.get('src') || 'pie.json';
+fetch(src, {cache:'no-store'}).then(r=>r.json()).then(data=>{
+  const cvs = document.getElementById('pie');
+  const ctx = cvs.getContext('2d');
+  const total = data.categories.reduce((a,c)=>a+Number(c.value||0), 0);
+  let start = -Math.PI/2;
+  data.categories.forEach(cat=>{
+    const val = Number(cat.value||0);
+    const angle = (val/total) * Math.PI * 2;
+    ctx.beginPath();
+    ctx.moveTo(300,300);
+    ctx.arc(300,300,260,start,start+angle);
+    ctx.closePath();
+    ctx.fillStyle = cat.color || '#888';
+    ctx.fill();
+    start += angle;
+  });
+  ctx.globalCompositeOperation = 'destination-out';
+  ctx.beginPath(); ctx.arc(300,300,140,0,Math.PI*2); ctx.fill();
+  ctx.globalCompositeOperation = 'source-over';
+  ctx.fillStyle = '#fff'; ctx.font = '600 20px system-ui, -apple-system, Segoe UI, Roboto, Arial';
+  ctx.textAlign = 'center'; ctx.fillText((data.title||'Category Pie'), 300, 36);
+  const legend = data.categories.map(c=>`• ${c.name} — ₱${Number(c.value).toLocaleString()}`).join('  ·  ');
+  document.getElementById('legend').textContent = legend;
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "title": "Spending by Category — November",
+  "categories": [
+    {
+      "name": "Housing (Rent)",
+      "value": 15000,
+      "color": "#b089ff"
+    },
+    {
+      "name": "Utilities",
+      "value": 3000,
+      "color": "#d6a3ff"
+    },
+    {
+      "name": "Groceries",
+      "value": 5000,
+      "color": "#ffe1f6"
+    },
+    {
+      "name": "Internet",
+      "value": 1800,
+      "color": "#a06ef5"
+    }
+  ],
+  "background": "transparent"
+}

@@ -1,0 +1,21 @@
+{
+  "title": "Monthly Cup Fill — November",
+  "percent": 0.25,
+  "gradient": [
+    "#b089ff",
+    "#ffe1f6"
+  ],
+  "background": "transparent",
+  "bubbles": {
+    "enabled": true,
+    "style": "slow-elegant",
+    "color": "#FFFFFF",
+    "density": 0.12
+  },
+  "rimGlow": {
+    "enabled": true,
+    "color": "#FFFFFF",
+    "atPercent": 1.0
+  },
+  "notes": "Update 'percent' each payday to reflect your Monthly Projection coverage."
+}

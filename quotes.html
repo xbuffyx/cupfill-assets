@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Finance Sass Quote</title>
+<style>
+html, body { margin:0; padding:0; background:transparent; }
+.wrap { display:flex; align-items:center; justify-content:center; width:100vw; height:100vh; }
+.card {
+  max-width:min(680px, 92vw); padding:18px 22px; border-radius:16px;
+  background: rgba(11,11,22,0.3);
+  box-shadow: 0 0 32px rgba(176,137,255,0.20);
+  border: 1px solid rgba(255,255,255,0.10);
+  backdrop-filter: blur(6px);
+  color:#fff; font: 600 20px/1.4 system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  text-align:center;
+}
+.accent { display:block; margin-top:10px; font-weight:500; opacity:0.8; font-size:14px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card" id="q">Loading…</div>
+</div>
+<script>
+const params = new URLSearchParams(location.search);
+const src = params.get('src') || 'quotes.json';
+fetch(src, {cache:'no-store'}).then(r=>r.json()).then(cfg=>{
+  const arr = cfg.quotes || [];
+  const q = arr[Math.floor(Math.random()*arr.length)] || 'Stay disciplined. Save first. Glow always.';
+  const el = document.getElementById('q');
+  el.innerHTML = q + '<span class="accent">— Broke Ass No More Dashboard™</span>';
+});
+</script>
+</body>
+</html>

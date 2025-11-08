@@ -1,0 +1,17 @@
+{
+  "scale": [
+    "😩",
+    "😕",
+    "😐",
+    "😊",
+    "💅"
+  ],
+  "labels": [
+    "Stressed",
+    "Worried",
+    "Neutral",
+    "Good",
+    "Slayed"
+  ],
+  "note": "Use this scale in your Notion mood tracker. This file can power optional embeds."
+}
